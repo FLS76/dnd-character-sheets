@@ -1,0 +1,92 @@
+name: Linux release
+
+# Полная Linux-сборка возможна только на Linux: упаковщик AppImage (mksquashfs)
+# и создание символьных ссылок на Windows не работают. Поэтому .AppImage и .deb
+# собираются здесь, на бесплатном Linux-раннере GitHub Actions, и прикрепляются
+# к релизу тега.
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to attach the build to, for example v1.0.0'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "linux-release-${{ github.ref }}"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: AppImage and deb
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install fpm for deb
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes ruby ruby-dev build-essential
+          sudo gem install fpm --no-document
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build AppImage and deb
+        run: npm run package:linux
+
+      - name: Show produced files
+        run: ls -la release/linux
+
+      - name: Store files as a workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: "linux-${{ inputs.tag || github.ref_name }}"
+          path: |
+            release/linux/*.AppImage
+            release/linux/*.deb
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Attach files to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag || github.ref_name }}
+        run: |
+          set -euo pipefail
+          mapfile -t files < <(find release/linux -maxdepth 1 -type f \( -name '*.AppImage' -o -name '*.deb' \))
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No AppImage or deb was produced." >&2
+            exit 1
+          fi
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG exists, replacing its files."
+            gh release upload "$TAG" "${files[@]}" --clobber
+          else
+            echo "Release $TAG not found, creating it."
+            gh release create "$TAG" --title "$TAG" --generate-notes "${files[@]}"
+          fi
+
+      - name: Reminder about the execute bit
+        run: |
+          cat <<'NOTE'
+          GitHub does not keep the execute permission on release files.
+          After downloading the AppImage run this once:
+
+            chmod +x DND*.AppImage
+            ./DND*.AppImage
+          NOTE

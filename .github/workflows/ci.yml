@@ -1,0 +1,47 @@
+name: CI
+
+# Проверка, без которой защита ветки main бессмысленна: параметр
+# "require status checks" требует хотя бы одну проверку, которая может упасть.
+# Здесь она одна — проект должен собираться, а workflow-файлы быть валидными.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "ci-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and validate workflows
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Validate workflow files
+        run: |
+          curl -fsSLo /tmp/actionlint.tar.gz \
+            'https://github.com/rhysd/actionlint/releases/download/v1.7.7/actionlint_1.7.7_linux_amd64.tar.gz'
+          echo '023070a287cd8cccd71515fedc843f1985bf96c436b7effaecce67290e7e0757  /tmp/actionlint.tar.gz' \
+            | sha256sum -c -
+          tar -xzf /tmp/actionlint.tar.gz -C /usr/local/bin actionlint
+          actionlint -shellcheck= -pyflakes= .github/workflows/*.yml

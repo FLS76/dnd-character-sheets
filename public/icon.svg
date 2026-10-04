@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7762ca"/>
+      <stop offset="0.52" stop-color="#51418d"/>
+      <stop offset="1" stop-color="#302653"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff9e9"/>
+      <stop offset="1" stop-color="#dfd2b7"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f3c878"/>
+      <stop offset="1" stop-color="#b67838"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#1a102d" flood-opacity=".5"/>
+    </filter>
+  </defs>
+  <rect x="32" y="32" width="960" height="960" rx="220" fill="url(#bg)" stroke="#b9aaff" stroke-opacity=".45" stroke-width="4"/>
+  <g filter="url(#shadow)">
+    <g transform="rotate(-5 470 500)">
+      <rect x="230" y="205" width="500" height="620" rx="38" fill="url(#paper)"/>
+      <path d="M300 320H655M300 390H620M300 460H640M300 530H575" stroke="#9b896e" stroke-width="18" stroke-linecap="round" opacity=".68"/>
+      <path d="M300 620H510" stroke="#c18b54" stroke-width="18" stroke-linecap="round" opacity=".8"/>
+    </g>
+    <g transform="translate(635 570) rotate(10)">
+      <path d="M0-205 176-103 176 103 0 205-176 103-176-103Z" fill="url(#gold)" stroke="#fff1c8" stroke-width="9"/>
+      <path d="M0-205V0L176-103M0 0-176-103M0 0V205M0 0 176 103M0 0-176 103" fill="none" stroke="#704326" stroke-width="6" opacity=".9"/>
+      <path d="M-176-103 0-205 176-103 0 0Z" fill="#f5d58f" opacity=".94"/>
+      <circle cx="0" cy="0" r="25" fill="#6c3e2d"/>
+    </g>
+  </g>
+  <path d="M98 98h42M98 98v42M926 98h-42M926 98v42M98 926h42M98 926v-42M926 926h-42M926 926v-42" stroke="#d6c8ff" stroke-width="10" stroke-linecap="round" opacity=".72"/>
+</svg>
