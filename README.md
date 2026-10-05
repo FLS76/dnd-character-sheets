@@ -2,10 +2,10 @@
 
 # Кодекс — листы персонажей D&D
 
-![Версия](https://img.shields.io/github/v/release/FLS76/dnd-character-sheets?label=%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F)
-![Лицензия](https://img.shields.io/github/license/FLS76/dnd-character-sheets?label=%D0%BB%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F)
+![Версия](https://img.shields.io/github/v/release/FLS76/dnd-character-sheets?label=%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F&v=1)
+![Лицензия](https://img.shields.io/github/license/FLS76/dnd-character-sheets?label=%D0%BB%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F&v=1)
 ![Платформы](https://img.shields.io/badge/Windows%20%7C%20Linux%20%7C%20Android-51418d?label=%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B)
-![Загрузки](https://img.shields.io/github/downloads/FLS76/dnd-character-sheets/total?label=%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9&color=blue)
+![Загрузки](https://img.shields.io/github/downloads/FLS76/dnd-character-sheets/total?label=%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9&color=blue&v=1)
 
 Локальное приложение для ведения визуальных листов персонажей Dungeons & Dragons 5e.
 Текущая версия: `1.0.0`. Поддерживаются Windows, Linux и Android.
