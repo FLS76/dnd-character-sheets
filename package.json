@@ -62,6 +62,7 @@
   "build": {
     "appId": "com.dndprogress.sheets",
     "productName": "DND Character Sheets",
+    "publish": "never",
     "files": [
       "dist/**/*",
       "electron/**/*"
