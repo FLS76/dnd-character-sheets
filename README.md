@@ -35,15 +35,30 @@
 
 | Платформа | Файл | Размер |
 |---|---|---|
-| Windows | `DND-Character-Sheets-Setup-1.0.0.exe` | 128 МБ |
+| Windows | `DND-Character-Sheets-Setup-1.0.0.exe` | 127,5 МБ |
+| Linux | `DND-Character-Sheets-1.0.0.AppImage` | 129,8 МБ |
+| Linux | `DND-Character-Sheets-1.0.0.deb` | 88,5 МБ |
 | Android | `DND-Character-Sheets-1.0.0.apk` | 3,5 МБ |
 | Android | `DND-Character-Sheets-1.0.0.aab` | 3,4 МБ |
 
 **Windows.** Скачайте `.exe` и запустите. Установщик спросит язык, папку и ярлыки, после чего покажет экран проверки.
 
+**Linux, AppImage.** Установка не нужна. GitHub не сохраняет право на запуск у скачанных файлов, поэтому один раз выполните:
+
+```bash
+chmod +x DND-Character-Sheets-1.0.0.AppImage
+./DND-Character-Sheets-1.0.0.AppImage
+```
+
+**Linux, deb.** Для дистрибутивов на базе Debian и Ubuntu:
+
+```bash
+sudo apt install ./DND-Character-Sheets-1.0.0.deb
+```
+
 **Android.** Скачайте `.apk`, разрешите установку из этого источника в настройках Android и откройте файл. Приложение подписано постоянным ключом, поэтому все будущие версии обновляют уже установленное приложение.
 
-**Linux.** Сборка подключена к GitHub Actions: workflow `.github/workflows/release-linux.yml` при появлении тега `v*` собирает `.AppImage` и `.deb` и прикрепляет их к релизу. До его первого запуска готовых Linux-файлов нет. Локально на Windows собирается только распакованная папка `linux-unpacked` — это каталог, а не единый файл, и переносить его на Linux нужно целиком.
+Оба Linux-файла собираются автоматически на бесплатном Linux-раннере GitHub Actions — workflow `.github/workflows/release-linux.yml` при появлении тега `v*` собирает `.AppImage` и `.deb` и прикрепляет их к релизу.
 
 ## Скриншоты
 

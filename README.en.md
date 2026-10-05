@@ -35,15 +35,30 @@ Ready-made files are in the **[Releases](../../releases)** section. Download the
 
 | Platform | File | Size |
 |---|---|---|
-| Windows | `DND-Character-Sheets-Setup-1.0.0.exe` | 128 MB |
+| Windows | `DND-Character-Sheets-Setup-1.0.0.exe` | 127.5 MB |
+| Linux | `DND-Character-Sheets-1.0.0.AppImage` | 129.8 MB |
+| Linux | `DND-Character-Sheets-1.0.0.deb` | 88.5 MB |
 | Android | `DND-Character-Sheets-1.0.0.apk` | 3.5 MB |
 | Android | `DND-Character-Sheets-1.0.0.aab` | 3.4 MB |
 
 **Windows.** Download the `.exe` and run it. The installer asks for language, folder and shortcuts, then shows a review screen.
 
+**Linux, AppImage.** No installation needed. GitHub does not keep the execute permission on downloaded files, so run this once:
+
+```bash
+chmod +x DND-Character-Sheets-1.0.0.AppImage
+./DND-Character-Sheets-1.0.0.AppImage
+```
+
+**Linux, deb.** For Debian and Ubuntu based distributions:
+
+```bash
+sudo apt install ./DND-Character-Sheets-1.0.0.deb
+```
+
 **Android.** Download the `.apk`, allow installing from this source in your Android settings, and open the file. The app is signed with a permanent key, so every future version updates the already installed app.
 
-**Linux.** The build is wired to GitHub Actions: the workflow `.github/workflows/release-linux.yml` builds `.AppImage` and `.deb` when a `v*` tag appears and attaches them to the release. Until it has run for the first time there are no finished Linux files. Locally on Windows only the unpacked `linux-unpacked` folder can be built — that is a directory, not a single file, and it has to be copied to Linux as a whole.
+Both Linux files are built automatically on the free GitHub Actions Linux runner — the workflow `.github/workflows/release-linux.yml` builds `.AppImage` and `.deb` when a `v*` tag appears and attaches them to the release.
 
 ## Screenshots
 
